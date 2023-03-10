@@ -4,7 +4,7 @@ general:
   appDir: "/zap"
   localProxy: { "http": "http://127.0.0.1:8090", "https": "http://127.0.0.1:8090" }
   sessionName: "session1"
-  shutdownOnceFinished: False
+  shutdownOnceFinished: True
 
 urlscan:
   urlScan: False
@@ -57,37 +57,37 @@ scan:
   # ZAP_AUTH_HEADER_VALUE=Basic [base64_encoded_creds] enviromental variable
   # in /.env file
 
-  authMethod: null
+    #authMethod: null
 
   # there are 2 parts to script based auth:
   ## oauth access token that needs to be refreshed on expiration.
   ## This auth method will work on OAuth2 workflows only if offline_token is
   ## available
 
-  #authMethod: 'scriptBasedAuthentication'
-  #scriptAuth:
-  #  authScriptName: 'offline-token'
-  #  authScriptEngine: 'Oracle Nashorn'
-  #  authScriptFilePath: 'scripts/offline-token.js'
-  #  authScriptDescription: 'will automatically fetch the new access token for every unauthorized request'
-  #  authTokenEndpoint: [oauth_realm_token_endpoint]
-  #  authClientID: [oauth_client_id]
-  #  authCreateUser: True
+  authMethod: 'scriptBasedAuthentication'
+  scriptAuth:
+    authScriptName: 'offline-token'
+    authScriptEngine: 'Oracle Nashorn'
+    authScriptFilePath: 'scripts/offline-token.js'
+    authScriptDescription: 'will automatically fetch the new access token for every unauthorized request'
+    authTokenEndpoint: 'oauth_realm_token_endpoint'
+    authClientID: 'oauth_client_id'
+    authCreateUser: True
 
   # to use Logged out authIndicatorRegex
-  #  authIsLoggedInIndicator: False
+    authIsLoggedInIndicator: True
 
   # regex expression that indicates the user is logged out and triggers the
   # token refresh process
-  #  authIndicatorRegex: '\QHTTP/1.1 401 Unauthorized\E'
+    authIndicatorRegex: '\Q401\E'
 
   ## adds the bearer token header auth to each request
-  #useHttpSenderScript: True
-  #HttpSenderScriptName: 'add-bearer-token'
-  #HttpSenderScriptEngine: 'Oracle Nashorn'
-  #HttpSenderScriptFilePath: 'scripts/add-bearer-token.js'
-  #HttpSenderScriptDescription: 'add bearer token to each HTTP request'
-  #HTTPParams: {} # Any parameters you want to use in your authentication script, use in script with key, values that change at runtime 
+  useHttpSenderScript: True
+  HttpSenderScriptName: 'add-bearer-token'
+  HttpSenderScriptEngine: 'Oracle Nashorn'
+  HttpSenderScriptFilePath: 'scripts/add-bearer-token.js'
+  HttpSenderScriptDescription: 'add bearer token to each HTTP request'
+  #HTTPParams: {} # Any parameters you want to use in your authentication script, use in script with key, values that change at runtime
   ## For OpenShift: {"cookieName": 'openshift-session-token', "cookieVal": 'sha256~**'}
   ## See [example](../scripts/add-token-cookie-param.js) of how to obtain these values in script
 

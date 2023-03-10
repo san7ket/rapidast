@@ -11,6 +11,7 @@ RUN chgrp -R 0 /home/zap && \
 USER zap
 COPY scripts /zap/scripts
 COPY policies /zap/policies
+RUN chmod a+rwx -R /zap/results/
 COPY entrypoint.sh .
 
 ENTRYPOINT ["entrypoint.sh"]
