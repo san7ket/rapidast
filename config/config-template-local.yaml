@@ -75,7 +75,7 @@ scan:
     authCreateUser: True
 
   # to use Logged out authIndicatorRegex
-    authIsLoggedInIndicator: True
+    authIsLoggedInIndicator: False
 
   # regex expression that indicates the user is logged out and triggers the
   # token refresh process
