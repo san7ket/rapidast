@@ -14,8 +14,8 @@ openapi:
   # import the OpenAPI definitions from an url will only work for public API
   # definitions. If not public you have to import the OPENAPI definition
   # file (json or yaml) into the "directory" and set importFromUrl to false
-  importFromUrl: True
-  url: "http://localhost:9001/openapi.yaml"
+  importFromUrl: False
+  #url: "http://localhost:9001/openapi.yaml"
 
   # if import_from_url is False, set a directory to contain OAS definition files
   directory: "/zap/config/oas"
